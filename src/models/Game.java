@@ -43,7 +43,7 @@ public class Game {
     }
 
     private void createDucks() {
-        for (int i = 0; i < ducks.size();i++) {
+        for (int i = 0; i < startAmountOfQueues*startAmountOfQueues;i++) {
             ducks.add(new Duck(i+1));
         }
     }
@@ -64,6 +64,7 @@ public class Game {
                 int queueId = new Random().nextInt(startAmountOfQueues);
                 Duck duck = new Duck(i+1);
 
+                // TODO, not 10 for each, the same for play...
                 if (queues.get(queueId).getAmountOfDucks()<=queues.size()) {
                     if (!queues.get(queueId).isDuckMoved()) {
                         if (duck.getDuckId()==playersDuckId) {
@@ -93,11 +94,6 @@ public class Game {
 
     public void nextRound() {
 
-        try {
-            Thread.sleep(10000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         round++;
 
         // Creating a new amount of empty queues

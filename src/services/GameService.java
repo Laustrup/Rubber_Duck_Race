@@ -23,7 +23,7 @@ public class GameService {
                 typedIsValid = true;
                 playGame(renderRandomDuckId());
             }
-            if (analyst.analyseChosenDuckId(typed)) {
+            else if (analyst.analyseChosenDuckId(typed)) {
                 typedIsValid = true;
                 playGame(Integer.parseInt(typed));
             }
@@ -44,6 +44,24 @@ public class GameService {
             if (game.hasWon()) {
                 break;
             }
+
+            printer.writeMessage("__________________________________________\n" +
+                                    "Next round will begin in ");
+
+            for (int j = 5; j > 0; j--) {
+                if (j!=1) {
+                    System.out.print(j+", ");
+                }
+                else {
+                    System.out.print(j+"!");
+                }
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
             game.nextRound();
         }
     }

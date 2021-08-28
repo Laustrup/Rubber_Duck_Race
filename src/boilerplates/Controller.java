@@ -41,7 +41,7 @@ public class Controller {
 
     public String pendAnotherRound() {
         printer.writeMessage("Up for another round?\n(Type yes/y to restart or no/n to exit)\n");
-        return scanner.nextLine();
+        return new Scanner(System.in).nextLine();
     }
 
 
