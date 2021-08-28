@@ -10,18 +10,20 @@ public class Game {
     // Attributes
     private LinkedList<Queue> queues;
     private String gameDetails = new String();
+    private int playersDuckId;
 
     // Values predefined for code
     private final static int startAmountOfQueues = 10;
 
-    public Game() {
+    public Game(int playersDuckId) {
         queues = new LinkedList<>();
         for (int i = 0; i < startAmountOfQueues; i++) {
             queues.add(new Queue());
         }
+        this.playersDuckId = playersDuckId;
     }
 
-    public Game(boolean begin) {
+    public Game(boolean begin, int playersDuckId) {
         queues = new LinkedList<>();
         for (int i = 0; i < startAmountOfQueues; i++) {
             queues.add(new Queue());
@@ -29,6 +31,7 @@ public class Game {
         if (begin) {
             begin();
         }
+        this.playersDuckId = playersDuckId;
     }
 
     private void begin() {

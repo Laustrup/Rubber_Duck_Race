@@ -1,6 +1,6 @@
 package models;
 
-import laustrup.rubber_duck_race.services.Printer;
+import services.Printer;
 
 import java.util.LinkedList;
 

@@ -1,6 +1,5 @@
 package boilerplates;
 
-import services.Analyst;
 import services.GameService;
 import services.Printer;
 
@@ -9,7 +8,6 @@ import java.util.Scanner;
 public class Controller {
 
     private Scanner scanner = new Scanner(System.in);
-    private Analyst analyst = new Analyst();
     private Printer printer = new Printer();
     private GameService gameService = new GameService();
 
@@ -30,7 +28,7 @@ public class Controller {
                 String typed = scanner.nextLine();
 
                 if (typed.equalsIgnoreCase("Play game")) {
-                    gameService.playGame();
+                    gameService.playMenu();
                     typedIsValid = true;
                 }
                 else if (typed.equalsIgnoreCase("Exit")) {
@@ -42,5 +40,7 @@ public class Controller {
             }
         }
     }
+
+
 
 }
