@@ -47,4 +47,8 @@ public class Queue {
     public String getInfo() {
         return info;
     }
+
+    public boolean isDuckMoved() {
+        return duckIsMoved;
+    }
 }

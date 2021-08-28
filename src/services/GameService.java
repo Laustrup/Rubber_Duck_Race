@@ -40,6 +40,10 @@ public class GameService {
         game = new Game(true,playersDuckId);
         for (int i = 0; i < 9;i++) {
             game.showGameDetails();
+
+            if (game.hasWon()) {
+                break;
+            }
             game.nextRound();
         }
     }
