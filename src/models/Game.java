@@ -110,8 +110,8 @@ public class Game {
                 }
 
                  // Todo
-                // Checks if there is any left over
-                if (i > queues.size()*queues.size()-queues.size() && !duckIds.contains(duck.getDuckId()) && round!=1) {
+                // Checks if there is any ducks left
+                if (i+1 > queues.size()*queues.size() && !duckIds.contains(duck.getDuckId())) {
                     for (int j = 0; j < ducks.size();j++) {
                         if (!isDuckInQueues(ducks.get(j))) {
                             duckIds.add(duck.getDuckId());
