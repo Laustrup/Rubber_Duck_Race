@@ -100,7 +100,6 @@ public class Game {
 
                 int queuesIndex = new Random().nextInt(startAmountOfQueues-round+1);
                 Duck duck = ducks.get(new Random().nextInt(ducks.size()));
-
                  // Only puts ducks in if queue ain't full, and id isn't already taken
                 //  The id is only added to the set of ids, if duck is added
                 if (queues.get(queuesIndex).getAmountOfDucks()<queues.size() &&
@@ -110,6 +109,7 @@ public class Game {
                         duckIds.add(duck.getDuckId());
                     }
                 }
+                System.out.println(queues.get(queuesIndex).getAmountOfDucks()<queues.size());
             }
         }
     }

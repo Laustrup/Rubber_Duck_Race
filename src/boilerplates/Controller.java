@@ -14,13 +14,16 @@ public class Controller {
     private GameService gameService = new GameService();
     private Analyst analyst = new Analyst();
 
-    public void menu() {
+    public void start() {
 
+        printer.writeMessage("Welcome to Rubber Duck Race!");
+        menu();
+    }
+
+    public void menu() {
         while (true) {
 
             boolean typedIsValid = false;
-
-            printer.writeMessage("Welcome to Rubber Duck Race!");
 
             while (!typedIsValid) {
                 printer.writeMessage("What do you wish to do?:\n\n" +
@@ -38,12 +41,5 @@ public class Controller {
             }
         }
     }
-
-    public String pendAnotherRound() {
-        printer.writeMessage("Up for another round?\n(Type yes/y to restart or no/n to exit)\n");
-        return new Scanner(System.in).nextLine();
-    }
-
-
 
 }

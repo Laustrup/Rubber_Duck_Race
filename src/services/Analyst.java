@@ -28,21 +28,7 @@ public class Analyst {
     public boolean analyseMenuChoice(String input) {
         if (input.equalsIgnoreCase("Play game")) {
             new GameService().playMenu();
-
-            boolean stillPending = true;
-            while (stillPending) {
-                String typed = new Controller().pendAnotherRound();
-
-                if (typed.equalsIgnoreCase("yes")||typed.equalsIgnoreCase("y")) {
-                    return false;
-                }
-                else if (typed.equalsIgnoreCase("no")||typed.equalsIgnoreCase("n")) {
-                    System.exit(1);
-                }
-                else {
-                    printer.writeErr("That's no option...");
-                }
-            }
+            new Controller().menu();
         }
         else if (input.equalsIgnoreCase("Exit")) {
             printer.writeMessage("Goodbye...");
