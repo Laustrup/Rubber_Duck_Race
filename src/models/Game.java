@@ -61,18 +61,18 @@ public class Game {
         // Puts ducks in queues
         for (int i = 0; i < startAmountOfQueues*startAmountOfQueues; i++) {
             while (true) {
-                int queueId = new Random().nextInt(startAmountOfQueues);
+                int queuesIndex = new Random().nextInt(startAmountOfQueues);
                 Duck duck = new Duck(i+1);
 
                 // TODO, not 10 for each, the same for play...
-                if (queues.get(queueId).getAmountOfDucks()<=queues.size()) {
-                    if (!queues.get(queueId).isDuckMoved()) {
+                if (queues.get(queuesIndex).getAmountOfDucks()<queues.size()) {
+                    if (!queues.get(queuesIndex).isDuckMoved()) {
                         if (duck.getDuckId()==playersDuckId) {
                             gg = true;
                         }
                         ducks.remove(duck.getDuckId()-1);
                     }
-                    queues.get(queueId).putDuckInQueue(duck);
+                    queues.get(queuesIndex).putDuckInQueue(duck);
                     break;
                 }
             }
@@ -111,16 +111,16 @@ public class Game {
         // Puts ducks in queues
         for (int i = 0; i < ducks.size(); i++) {
             while (true) {
-                int queueId = new Random().nextInt(startAmountOfQueues-round+1);
+                int queuesIndex = new Random().nextInt(startAmountOfQueues-round+1);
 
-                if (queues.get(queueId).getAmountOfDucks()<=queues.size()) {
-                    if (!queues.get(queueId).isDuckMoved()) {
+                if (queues.get(queuesIndex).getAmountOfDucks()<=queues.size()) {
+                    if (!queues.get(queuesIndex).isDuckMoved()) {
                         if (ducks.get(i).getDuckId()==playersDuckId) {
                             gg = true;
                         }
                         ducks.remove(ducks.get(i).getDuckId()-1);
                     }
-                    queues.get(queueId).putDuckInQueue(ducks.get(i));
+                    queues.get(queuesIndex).putDuckInQueue(ducks.get(i));
                     break;
                 }
             }

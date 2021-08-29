@@ -41,7 +41,12 @@ public class Queue {
     }
 
     public int getAmountOfDucks() {
-        return ducks.size();
+        if (duckIsMoved) {
+            return ducks.size()+1;
+        }
+        else {
+            return ducks.size();
+        }
     }
 
     public String getInfo() {

@@ -38,7 +38,7 @@ public class Analyst {
                     return false;
                 }
                 else if (typed.equalsIgnoreCase("no")||typed.equalsIgnoreCase("n")) {
-                    return true;
+                    System.exit(1);
                 }
                 else {
                     printer.writeErr("That's no option...");
