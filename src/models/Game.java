@@ -166,7 +166,7 @@ public class Game {
             if (duckIsFound) {
                 break;
             }
-            if (i == queues.get(i).getDucks().size()-1 && !duckIsFound) {
+            if (i == queues.size()-1 && !duckIsFound) {
                 duckIdsRemoved.add(duck.getDuckId());
             }
         }
