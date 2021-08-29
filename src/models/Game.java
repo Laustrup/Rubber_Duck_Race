@@ -3,6 +3,7 @@ package models;
 import services.Printer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -52,39 +53,18 @@ public class Game {
         gameDetails += "Game has begun! Details are:\n\n";
         round = 1;
 
+        /*
         try {
             Thread.sleep(5000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        // Puts ducks in queues
-        for (int i = 0; i < startAmountOfQueues*startAmountOfQueues; i++) {
-            while (true) {
-                int queuesIndex = new Random().nextInt(startAmountOfQueues);
-                Duck duck = new Duck(i+1);
+         */
 
-                if (queues.get(queuesIndex).getAmountOfDucks()<queues.size()) {
-                    if (!queues.get(queuesIndex).isDuckMoved()) {
-                        if (duck.getDuckId()==playersDuckId) {
-                            gg = true;
-                        }
-                        ducks.remove(duck.getDuckId()-1);
-                    }
-                    queues.get(queuesIndex).putDuckInQueue(duck);
-                    break;
-                }
-            }
-        }
+        putDucksInQueues();
 
-        // Gathers infos about round
-        for (int i = 0; i < queues.size();i++) {
-            int queueNumber = i+1;
-            gameDetails += "\nQueue number " + queueNumber + "\n" + queues.get(i).getInfo();
-        }
-        if (gg) {
-            gameDetails += "\n\n\tYour're duck was removed at round " + round + "!\n";
-        }
+        gatherRoundInfo();
     }
 
     public void showGameDetails() {
@@ -107,29 +87,67 @@ public class Game {
         play();
     }
 
-    //TODO
     private void play() {
-        // Puts ducks in queues
-        for (int i = 0; i < ducks.size(); i++) {
-            while (true) {
-                int queuesIndex = new Random().nextInt(startAmountOfQueues-round+1);
 
-                if (queues.get(queuesIndex).getAmountOfDucks()<queues.size()) {
-                    if (!queues.get(queuesIndex).isDuckMoved()) {
-                        if (ducks.get(i).getDuckId()==playersDuckId) {
-                            gg = true;
-                        }
-                        ducks.remove(ducks.get(i).getDuckId()-1);
+        HashSet<Integer> duckIds = new HashSet<>();
+        int queueLength = startAmountOfQueues-round-1;
+
+        putDucksInQueues();
+
+        gatherRoundInfo();
+    }
+
+    // Way too big big O...
+    private void putDucksInQueues() {
+        HashSet<Integer> duckIds = new HashSet<>();
+
+        for (int i = 0; i < ducks.size(); i++) {
+            boolean duckIdIsvalid = false;
+
+            while (!duckIdIsvalid) {
+
+                int queuesIndex = new Random().nextInt(startAmountOfQueues-round+1);
+                Duck duck = ducks.get(new Random().nextInt(ducks.size()));
+
+                 // Only puts ducks in if queue ain't full, and id isn't already taken
+                //  The id is only added to the set of ids, if duck is added
+                if (queues.get(queuesIndex).getAmountOfDucks()<queues.size() &&
+                        !duckIds.contains(duck.getDuckId())) {
+                    duckIdIsvalid = checkIfRandomDuckIdIsValid(queuesIndex,duck,duckIds);
+                    if (duckIdIsvalid) {
+                        duckIds.add(duck.getDuckId());
                     }
-                    queues.get(queuesIndex).putDuckInQueue(ducks.get(i));
-                    break;
                 }
             }
         }
+    }
 
-        // Gathers info about round
+    private boolean checkIfRandomDuckIdIsValid(int queuesIndex,Duck duck,HashSet<Integer> duckIds) {
+        for (int i = 0; i < ducks.size();i++) {
+
+            // Checks if the id of the duck is in ducks
+            if (ducks.get(i).getDuckId() == duck.getDuckId()) {
+
+                // Checks if duck is first
+                if (!queues.get(queuesIndex).isDuckMoved()) {
+
+                    // Checks if the first is the player's duck
+                    if (duck.getDuckId()==playersDuckId) {
+                        gg = true;
+                    }
+                    ducks.remove(duck.getDuckId()-1);
+                }
+                queues.get(queuesIndex).putDuckInQueue(duck);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void gatherRoundInfo() {
         for (int i = 0; i < queues.size();i++) {
-            gameDetails += "\nQueue number " + i+1 + "\n" + queues.get(i).getInfo();
+            int queueNumber = i+1;
+            gameDetails += "\nQueue number " + queueNumber + "\n" + queues.get(i).getInfo();
         }
         if (gg) {
             gameDetails += "\n\n\tYour're duck was removed at round " + round + "!\n";
