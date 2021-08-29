@@ -64,6 +64,9 @@ public class GameService {
 
             game.nextRound();
         }
+        if (!game.hasWon()) {
+            printer.writeMessage("\tSorry, you didn't win...");
+        }
     }
 
 }

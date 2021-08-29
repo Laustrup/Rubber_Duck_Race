@@ -56,4 +56,8 @@ public class Queue {
     public boolean isDuckMoved() {
         return duckIsMoved;
     }
+
+    public LinkedList<Duck> getDucks() {
+        return ducks;
+    }
 }
