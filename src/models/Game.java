@@ -113,7 +113,7 @@ public class Game {
             while (true) {
                 int queuesIndex = new Random().nextInt(startAmountOfQueues-round+1);
 
-                if (queues.get(queuesIndex).getAmountOfDucks()<=queues.size()) {
+                if (queues.get(queuesIndex).getAmountOfDucks()<queues.size()) {
                     if (!queues.get(queuesIndex).isDuckMoved()) {
                         if (ducks.get(i).getDuckId()==playersDuckId) {
                             gg = true;
