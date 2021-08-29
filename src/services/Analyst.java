@@ -10,7 +10,6 @@ public class Analyst {
         int duckId = 0;
         try {
             duckId = Integer.parseInt(typed);
-
         }
         catch (Exception e) {
             printer.writeErr("That is not an number...");

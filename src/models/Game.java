@@ -64,7 +64,6 @@ public class Game {
                 int queuesIndex = new Random().nextInt(startAmountOfQueues);
                 Duck duck = new Duck(i+1);
 
-                // TODO, not 10 for each, the same for play...
                 if (queues.get(queuesIndex).getAmountOfDucks()<queues.size()) {
                     if (!queues.get(queuesIndex).isDuckMoved()) {
                         if (duck.getDuckId()==playersDuckId) {
@@ -102,6 +101,8 @@ public class Game {
             tempQueues.add(new Queue());
         }
         queues = tempQueues;
+
+        gameDetails = new String();
 
         play();
     }
