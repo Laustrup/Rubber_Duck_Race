@@ -9,9 +9,7 @@ import java.util.Scanner;
 public class Controller {
 
     private Scanner scanner = new Scanner(System.in);
-
     private Printer printer = new Printer();
-    private GameService gameService = new GameService();
     private Analyst analyst = new Analyst();
 
     public void start() {
