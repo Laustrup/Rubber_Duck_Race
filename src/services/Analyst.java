@@ -30,9 +30,8 @@ public class Analyst {
             new GameService().playMenu();
             new Controller().menu();
         }
-        else if (input.equalsIgnoreCase("Exit")) {
-            printer.writeMessage("Goodbye...");
-            System.exit(1);
+        else if (input.equalsIgnoreCase("Show chances")) {
+            new DatabaseService().showChances();
         }
         else if (input.equalsIgnoreCase("Exist")) {
             printer.writeMessage("There you go <3");
@@ -41,6 +40,10 @@ public class Analyst {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        else if (input.equalsIgnoreCase("Exit")) {
+            printer.writeMessage("Goodbye...");
+            System.exit(1);
         }
         else {
             printer.writeErr("Whoops, that is not an option...");

@@ -109,7 +109,6 @@ public class Game {
                     }
                 }
 
-                 // Todo
                 // Checks if there is any ducks left
                 if (i+1 > queues.size()*queues.size() && !duckIds.contains(duck.getDuckId())) {
                     for (int j = 0; j < ducks.size();j++) {
@@ -185,6 +184,10 @@ public class Game {
 
     public boolean hasWon() {
         return gg;
+    }
+
+    public int getRound() {
+        return round;
     }
 
 }

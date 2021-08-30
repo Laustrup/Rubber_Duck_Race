@@ -30,8 +30,9 @@ public class Controller {
 
                                     "_______________________________\n" +
                                     "\tPlay game\n" +
-                                    "\tExit\n" +
+                                    "\tView chances\n" +
                                     "\tExist\n" +
+                                    "\tExit\n" +
                                     "_______________________________");
 
                 String typed = scanner.nextLine();

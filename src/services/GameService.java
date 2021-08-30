@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class GameService {
 
     private Game game;
+
+    private DatabaseService database = new DatabaseService();
     private Printer printer = new Printer();
     private Analyst analyst = new Analyst();
 
@@ -36,12 +38,14 @@ public class GameService {
         return duckId;
     }
 
+    // DatabaseService not working yet because of missing driver
     private void playGame(int playersDuckId) {
         game = new Game(true,playersDuckId);
         for (int i = 0; i < 9;i++) {
             game.showGameDetails();
 
             if (game.hasWon()) {
+                //database.insertWin(game);
                 break;
             }
 
@@ -65,6 +69,7 @@ public class GameService {
             game.nextRound();
         }
         if (!game.hasWon()) {
+            //database.insertLose(game);
             printer.writeMessage("\n\tSorry, you didn't win...");
         }
     }
